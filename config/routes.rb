@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   get '/home' => 'pages#home'
   
-  get '/profile' => 'pages#profile'
+  get '/user/:id' => 'pages#profile' # routes to the logged in user
   
   get '/explore' => 'pages#explore'
 
