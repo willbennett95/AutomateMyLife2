@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   # root URL
   root 'pages#index'
   
   get '/home' => 'pages#home'
   
-  get '/user' => 'pages#profile'
+  get '/profile' => 'pages#profile'
   
   get '/explore' => 'pages#explore'
 

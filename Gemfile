@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# import for devise (user auth)
+gem 'devise'
+
 
 # import for boostrap
 gem 'bootstrap-sass', '~> 3.3.7'
