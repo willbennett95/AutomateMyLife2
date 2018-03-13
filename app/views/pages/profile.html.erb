@@ -1,40 +1,63 @@
 <div class="row">
-    <div class="col-xs-12"> 
-        <div class="jumbotron">
-            BANNER
-        </div>
-    </div>
-</div>
-
-<div class="row">
     <div class="col-xs-3">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>profile</p>
-            </div>
+        <div class="col-sm-12" style="margin-top: -221px;">
+            <% if current_page?('/user/Paperthin') %>
+            <img src="/paperthin.jpg" height="200px" width="200px" class="profile-picture" style="border: 5px solid white;">
+            <% else %>
+            <img src="/default_profile.jpg" height="200px" width="200px" class="profile-picture" style="border: 5px solid white;">
+            <% end %>
         </div>
-    </div>
-    
-    <div class="col-xs-6">
-        <%= render '/components/posts_form' %>
-        
-        <% for @p in @posts %>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p><%= @p.content %></p>
-            </div>
-        </div>
-        <% end %>
-    </div>
-    <div class="col-xs-3">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>actions</p>
-            </div>
+        <div class="col-sm-12">
+            <h3 style="font-weight: bold;"><%= @username %></h3>
         </div>
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>level</p>
+            </div>
+        </div>
+    </div> 
+    
+
+    
+    <div class="col-xs-6">
+        <% if user_signed_in? && current_page?('/user/' + current_user.username) %>
+        <%= render '/components/posts_form' %><br><br>
+        <% end %>
+        
+        <% for @p in @posts %>
+        <div class="panel panel-default post-panel">
+            <div class="panel-body row">
+                
+                <div class="col-sm-1">
+                    <img class="profile-picture" src="/default_profile.jpg" height="50px" width="50px"></img>
+                </div>
+                <div class="col-sm-11">
+                    <p class="post-title"><a href="/user/<%= User.find(@p.user_id).username %>"><span class="post-user_id"><%= User.find(@p.user_id).username %></span></a> <span class="post-time"> - <%= @p.created_at.to_formatted_s(:short) %></span></p>
+                    <% if user_signed_in? && current_page?('/user/' + current_user.username) %>
+                    <div class="dropdown"  style="float: right;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><%= link_to('Delete', destroy_post_url(@p), :method => :delete, data: {confirm: 'Are you sure?'}) %></li>
+                        </ul> 
+                    </div>
+                    <% end %>
+                    
+                    <p class="post-body"><%= @p.content %></p>
+                </div>
+                <div class="col-sm-12">
+                    <p class="post-upvotes"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></p>
+                </div>
+                
+            </div>
+        </div>
+        <% end %>
+    </div>
+    
+    <div class="panel panel-default post-panel">
+        <div class="panel-body row">
+            <div class="col-sm-12">
+                <center><a href="#top"><p style="opacity: 0.7;">Back to Top <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></p></a></center>
             </div>
         </div>
     </div>

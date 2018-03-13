@@ -13,3 +13,52 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+    background-color: rgba(59, 89, 152, 0.05);
+}
+
+.post-panel {
+    margin-top: -21px;
+}
+
+.post-title {
+    text-align: left;
+    margin-left: 15px;
+}
+
+.post-user_id {
+    color: black;
+    font-weight: bold;
+}
+
+.post-time {
+    opacity: 0.7;
+}
+
+.post-body {
+    text-align: left;
+    margin-left: 15px;
+}
+
+.post-upvotes {
+    text-align: left;
+    margin-left: 60px;
+    opacity: 0.5;
+}
+
+.profile-picture {
+    border-radius: 5%;
+}
+
+.panel-footer {
+    background-color: white;
+}
+
+.banner-picture {
+    width: 100%;
+    height: 500px;
+    margin-top: -21px;
+    object-fit: cover;
+
+}

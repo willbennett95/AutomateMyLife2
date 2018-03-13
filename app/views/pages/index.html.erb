@@ -1,2 +1,41 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<% if !user_signed_in? %>
+    <style> 
+        body {
+            background:
+            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url("/erra.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        
+        h1 {
+            color: white;
+            font-weight: bold;
+        }
+        .container-index {
+            margin-right: 15%;
+            margin-left: 15%;
+        }
+        .text {
+            color: white;
+            font-weight: 300;
+            font-size: 150%;
+        }
+    </style>
+    
+    <div class="container-index">
+        <h1> Welcome to AutomateMyLife </h1>
+        <p class="text">
+            The incentivising social network designed to subside the laziness within.
+        </p>
+    </div>
+    
+<% else %>
+
+    <script>
+        document.location = "/home"
+    </script>
+
+<% end %>

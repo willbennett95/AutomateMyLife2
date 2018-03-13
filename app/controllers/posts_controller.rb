@@ -16,6 +16,24 @@ class PostsController < ApplicationController
         end
     end
     
+    def show
+        @user = User.find(params[:id])
+    end
+    
+    def destroy
+        @post = Post.find(params[:id])
+        @post.destroy
+
+        respond_to do |f|
+            if (@post.destroy)
+                f.html {redirect_to "", notice: "Post deleted"}
+                f.json {head :no_content}
+            else
+                f.html {redirect_to "", notice: "Error: post was not deleted"}
+            end
+        end
+    end
+    
     private
     def post_params 
         params.require(:post).permit(:user_id, :content)

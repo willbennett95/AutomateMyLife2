@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/explore' => 'pages#explore'
   
   resources :posts
+  
+  match 'posts/:id' => 'posts#destroy', :via => :delete, :as => :destroy_post
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

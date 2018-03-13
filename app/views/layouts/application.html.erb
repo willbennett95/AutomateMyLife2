@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AutomateMyLife2</title>
+  <title>AutomateMyLife</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,6 +9,27 @@
 <body>
   
 <%= render 'layouts/navbar' %>
+
+<% if params[:id] != nil %>
+  <% if current_page?('/user/' + @username) %>
+    <img src="/scandroid.jpg" class="banner-picture">
+    <div class="row">
+      <div class="col-sm-12" style="background-color: white;">
+        <div class="container">
+          <div class="col-sm-3">&nbsp;</div>
+          <div class="col-sm-6">
+            <div class="col-sm-2">Posts
+              <h6 style="color: blue; font-size: 150%;"><%= User.find_by_username(params[:id]).posts.count %></h6>
+            </div>
+            <div class="col-sm-2">Followers
+              <h6 style="color: blue; font-size: 150%;">2</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
 <div class="container">
   <span class="notice"><%= notice %></span>
