@@ -1,21 +1,45 @@
 <div class="panel panel-default post-form-panel">
     <div class="panel-body row">
-        
-        <div class="col-sm-1">
-            <img class="profile-picture" src="/default_profile.jpg" height="50px" width="50px"></img>
+      
+      
+  <ul class="nav nav-tabs" style="margin-top: -21px;">
+    <li class="active"><a data-toggle="tab" href="#post1">Basic Post</a></li>
+    <li><a data-toggle="tab" href="#post2">Intermediate Post</a></li>
+    <li><a data-toggle="tab" href="#post3">Advanced Post</a></li>
+  </ul>
+
+      <div class="tab-content">
+        <div id="post1" class="tab-pane fade in active" style="margin-top: 21px">
+          
+          <div class="col-sm-1">
+              <img class="profile-picture" src="/default_profile.jpg" height="50px" width="50px"></img>
+          </div>
+          <div class="col-sm-11">
+            <%= form_for(@newPost) do |f| %>
+            <center> 
+              <div class="field" style="margin-left: 10px;">
+                <%= f.text_field :content, autofocus: true, class: "form-control" %>
+                <span style="float: right; margin-top: 8px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
+              </div>
+            </center> 
+            <% end %>
+          </div>
+          <div class="col-sm-12">
+          </div>
+          
+          
         </div>
-        <div class="col-sm-11">
-          <%= form_for(@newPost) do |f| %>
-          <center> 
-            <div class="field" style="margin-left: 10px;">
-              <%= f.text_field :content, autofocus: true, class: "form-control" %>
-              <span style="float: right; margin-top: 8px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
-            </div>
-          </center> 
-          <% end %>
+        <div id="post2" class="tab-pane fade post-body">
+          <h3>Intermediate Post</h3>
+          <p>An intermediate post will require the user to provide a picture and description of their task</p>
+          
         </div>
-        <div class="col-sm-12">
+        <div id="post3" class="tab-pane fade post-body">
+          <h3>Advanced Post</h3>
+          <p>An advanced post will require the same as an intermediate post, with an additonal screenshot of their location with the time in view</p>
+          
         </div>
+      </div>
     </div>
 </div>
 

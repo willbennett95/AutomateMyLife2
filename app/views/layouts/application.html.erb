@@ -10,26 +10,27 @@
   
 <%= render 'layouts/navbar' %>
 
-<% if params[:id] != nil %>
-  <% if current_page?('/user/' + @username) %>
+<% if params[:id] != nil && current_page?('/user/' + @username) %>
     <img src="/scandroid.jpg" class="banner-picture">
     <div class="row">
       <div class="col-sm-12" style="background-color: white;">
         <div class="container">
           <div class="col-sm-3">&nbsp;</div>
           <div class="col-sm-6">
-            <div class="col-sm-2">Posts
-              <h6 style="color: blue; font-size: 150%;"><%= User.find_by_username(params[:id]).posts.count %></h6>
+            <div class="col-sm-2" style="text-align: center; margin-top: 5px;">Posts
+              <h6 style="color: rgba(59, 89, 152, 1); font-size: 150%;"><%= User.find_by_username(params[:id]).posts.count %></h6>
             </div>
-            <div class="col-sm-2">Followers
-              <h6 style="color: blue; font-size: 150%;">2</h6>
+            <div class="col-sm-2" style="text-align: center; margin-top: 5px;">Followers
+              <h6 style="color: rgba(59, 89, 152, 1); font-size: 150%;">2</h6>
             </div>
+            <% if user_signed_in? && User.find(@p.user_id).username == current_user.username %>
+              <div class="col-sm-8" style="text-align: right; margin-top: 10px;"><a href="/users/edit"><li type-"button" class="btn btn-default" style="color: grey; opacity: 0.8; font-weight: bold;">Edit Profile</li></a></div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-<% end %>
 
 <div class="container">
   <span class="notice"><%= notice %></span>
