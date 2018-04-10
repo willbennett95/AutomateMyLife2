@@ -12,7 +12,7 @@
         <div id="post1" class="tab-pane fade in active" style="margin-top: 21px">
           
           <div class="col-sm-1">
-              <img class="profile-picture" src="/default_profile.jpg" height="50px" width="50px"></img>
+              <div class="round-image-50"><%= image_tag(current_user.profilepic.url(:thumb)) %></div>
           </div>
           <div class="col-sm-11">
             <%= form_for(@newPost) do |f| %>
