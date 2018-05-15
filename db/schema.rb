@@ -11,13 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409141458) do
+ActiveRecord::Schema.define(version: 20180515225040) do
 
-  create_table "posts", force: :cascade do |t|
+  create_table "intermediatePosts", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  add_index "intermediatePosts", ["user_id", "created_at"], name: "index_intermediatePosts_on_user_id_and_created_at"
+  add_index "intermediatePosts", ["user_id"], name: "index_intermediatePosts_on_user_id"
+
+  create_table "intermediate_posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "intermediate_posts", ["user_id"], name: "index_intermediate_posts_on_user_id"
+
+  create_table "posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
   end
 
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"

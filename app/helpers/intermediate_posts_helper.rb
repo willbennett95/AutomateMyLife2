@@ -1,0 +1,2 @@
+module IntermediatePostsHelper
+end

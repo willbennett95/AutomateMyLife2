@@ -41,6 +41,20 @@
                     
                     <p class="post-body"><%= @p.content %></p>
                 </div>
+                
+                <% if @p.image.exists? %>
+                    <div class="col-sm-12 post-image">
+                        <%= link_to image_tag(@p.image.url, class: 'post-image'), @p.image.url, target: '_blank' %>
+                    </div>
+                <% end %>
+                
+                <% if @p.image2.exists? %>
+                <div class="col-sm-12 post-image">
+                    <%= link_to image_tag(@p.image2.url, class: 'post-image'), @p.image2.url, target: '_blank' %>
+                </div>
+            <% end %>
+            
+                
                 <div class="col-sm-12">
                     <p class="post-upvotes"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></p>
                 </div>

@@ -26,17 +26,58 @@
           </div>
           <div class="col-sm-12">
           </div>
-          
-          
         </div>
-        <div id="post2" class="tab-pane fade post-body">
-          <h3>Intermediate Post</h3>
-          <p>An intermediate post will require the user to provide a picture and description of their task</p>
-          
+        
+        
+        
+        <div id="post2" class="tab-pane fade post-body" style="margin-top: 21px">
+          <div class="col-sm-1">
+              <div class="round-image-50"><%= image_tag(current_user.profilepic.url(:thumb)) %></div>
+          </div>
+          <div class="col-sm-11">
+            <%= form_for(@newPost) do |f| %>
+            <center> 
+              <div class="field" style="margin-left: 10px;">
+                <%= f.text_field :content, autofocus: true, class: "form-control" %>
+                <div class="form-group">
+                  <h5>Add an image to validate the completion of your task</h5>
+                  <%= f.file_field :image, class: 'form-control' %>
+                </div>
+                <span style="float: right; margin-top: 8px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
+              </div>
+            </center> 
+            <% end %>
+          </div>
+          <div class="col-sm-12">
+          </div>
         </div>
-        <div id="post3" class="tab-pane fade post-body">
-          <h3>Advanced Post</h3>
-          <p>An advanced post will require the same as an intermediate post, with an additonal screenshot of their location with the time in view</p>
+        
+        
+        
+        <div id="post3" class="tab-pane fade post-body" style="margin-top: 21px">
+          <div class="col-sm-1">
+              <div class="round-image-50"><%= image_tag(current_user.profilepic.url(:thumb)) %></div>
+          </div>
+          <div class="col-sm-11">
+            <%= form_for(@newPost) do |f| %>
+            <center> 
+              <div class="field" style="margin-left: 10px;">
+                <%= f.text_field :content, autofocus: true, class: "form-control" %>
+                <div class="form-group">
+                  <h5>Add an image to validate the completion of your task</h5>
+                  <%= f.file_field :image, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <h5>Add an image to validate the task was completed on time (e.g. a screenshot)</h5>
+                  <%= f.file_field :image2, class: 'form-control' %>
+                </div>
+                <span style="float: right; margin-top: 8px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
+              </div>
+            </center> 
+            <% end %>
+          </div>
+          <div class="col-sm-12">
+          </div>
           
         </div>
       </div>
