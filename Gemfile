@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # import for devise (user auth)
 gem 'devise'
 
+# import for wicked (pdf exporter)
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # import for boostrap
 gem 'bootstrap-sass', '~> 3.3.7'

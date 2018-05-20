@@ -4,7 +4,7 @@ class PostsController < ApplicationController
         @post = Post.new
     end
     
-    def create 
+    def create
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         respond_to do |f|
@@ -33,9 +33,28 @@ class PostsController < ApplicationController
             end
         end
     end
+
+
+    def index
+     @posts = Post.all.where("user_id = ?", current_user.id)
+     respond_to do |f|
+       f.html
+       f.csv { render text: @posts.to_csv }
+     end
+    end
+
+    
+    def download_pdf
+        @posts = Post.all.where("user_id = ?", current_user.id)
+        pdf = WickedPdf.new.pdf_from_string(render_to_string('pages/profile.html.erb', layout: false))
+        send_data pdf, :filename => "mydata.pdf", :type => "application/pdf", :disposition => "attachment"
+    end
     
     private
+            
+    
     def post_params 
         params.require(:post).permit(:user_id, :content, :image, :image2)
-    end     
+    end
+    
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :friendships, only: [:create, :update, :destroy]
+
   devise_for :users
   # root URL
   root 'pages#index'
@@ -8,9 +10,16 @@ Rails.application.routes.draw do
   
   get '/user/:id' => 'pages#profile' # routes to the logged in user
   
-  get '/explore' => 'pages#explore'
+  get '/findfriends' => 'pages#findfriends'
   
-  resources :posts
+  get '/mydata' => 'pages#mydata'
+  get '/userdata' => 'pages#userdata'
+  get '/mydata/download_pdf'
+  
+  resources :posts do
+    get :download_pdf
+    resources :likes
+  end
   
   match 'posts/:id' => 'posts#destroy', :via => :delete, :as => :destroy_post
   match 'intermediateposts/:id' => 'intermediateposts#destroy', :via => :delete, :as => :destroy_intermediatePost

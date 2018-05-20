@@ -68,16 +68,22 @@
                     <%= link_to image_tag(@p.image2.url, class: 'post-image'), @p.image2.url, target: '_blank' %>
                 </div>
             <% end %>
-            
+       
             <div class="col-sm-12">
                 <p class="post-upvotes">
-                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                    <% liked = @p.likes.find { |like| like.user_id == current_user.id} %>
+                    <% if liked %>
+                      <span><%= button_to "Unlike", post_like_path(@p, liked), method: :delete, class: "btn btn-primary" %></span>
+                    <% else %>
+                      <span><%= button_to 'Like', post_likes_path(@p), method: :post, class: "btn btn-primary" %></span>
+                    <% end %>
                 </p>
+                <p><%= @p.likes.count %> <%= (@p.likes.count) == 1 ? 'Like' : 'Likes' %></p>
             </div>
             
         </div>
     </div>
-    <% end %>
+    <% end %> 
     
     
     <div class="panel panel-default post-panel">
