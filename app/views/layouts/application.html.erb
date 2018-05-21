@@ -10,6 +10,7 @@
   
 <%= render 'layouts/navbar' %>
 
+<%# Render profile banner if the current page is a profile page %>
 <% if params[:id] != nil && current_page?('/user/' + @username) %>
     <img src="/scandroid.jpg" class="banner-picture">
     <div class="row">
@@ -17,14 +18,24 @@
         <div class="container">
           <div class="col-sm-3">&nbsp;</div>
           <div class="col-sm-6">
+            <%# Displaying current user's post count %>
             <div class="col-sm-2" style="text-align: center; margin-top: 5px;">Posts
               <h6 style="color: rgba(59, 89, 152, 1); font-size: 150%;"><%= User.find_by_username(params[:id]).posts.count %></h6>
             </div>
+            <%# Displaying current user's follower count %>
             <div class="col-sm-2" style="text-align: center; margin-top: 5px;">Followers
-              <h6 style="color: rgba(59, 89, 152, 1); font-size: 150%;">2</h6>
+              <h6 style="color: rgba(59, 89, 152, 1); font-size: 150%;"><%= User.find_by_username(params[:id]).followers.count %></h6>
             </div>
+            <%# Displaying current user's following count %>
+            <div class="col-sm-2" style="text-align: center; margin-top: 5px;">Following
+              <h6 style="color: rgba(59, 89, 152, 1); font-size: 150%;"><%= User.find_by_username(params[:id]).following.count %></h6>
+            </div>
+            <%# If user is on their profile render edit profile button %>
             <% if user_signed_in? && User.find(@p.user_id).username == current_user.username %>
-              <div class="col-sm-8" style="text-align: right; margin-top: 10px;"><a href="/users/edit"><li type-"button" class="btn btn-default" style="color: grey; opacity: 0.8; font-weight: bold;">Edit Profile</li></a></div>
+              <div class="col-sm-6" style="text-align: right; margin-top: 10px;"><a href="/users/edit"><li type-"button" class="btn btn-default" style="color: grey; opacity: 0.8; font-weight: bold;">Edit Profile</li></a></div>
+            <%# If a user is not on their profile render follow/unfollow button %>
+            <% else %>
+            <div class="col-sm-6" style="text-align: right; margin-top: 15px;"><%= render '/components/follow_btn', :user => User.find_by_username(params[:id]) %></div>
             <% end %>
           </div>
         </div>

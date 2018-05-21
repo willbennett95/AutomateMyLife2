@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-xs-3">
+    </div>
+    
+    <div class="col-xs-6">
+        <h3 style="margin-bottom: 21px;">Connect with other users</h3>
+            <%# Display a list of all users that is not the current user %>
+            <% @users.each do |user| %>
+            <% if user != current_user %>
+                <div class="panel panel-default post-panel">
+                    <div class="panel-body row">
+                        <div class="col-sm-1">
+                            <%# Display each user's profile picture as a thumbnail %>
+                            <div class="round-image-50"><%= image_tag(user.profilepic.url(:thumb)) %></div>
+                        </div>
+                        <div class="col-sm-11">
+                        <%# Display each user's username as a link to their profile %>
+                        <a href="/user/<%=user.username %>"><h4 style= "font-weight: bold; margin-top: 12px; margin-left: 12px;"><%=user.username %> </h4></a>
+                        <div style="float: right; margin-top: -21px;">
+                            <center>
+                            <%# Display follow button %>
+                            <% if !current_user.following?(user) %>
+                                <%= form_for(current_user.active_followers.build) do |f| %>
+                                    <div><%= hidden_field_tag :followed_id, user.id %></div>
+                                    <%= f.submit "Follow", class: "btn btn-primary", style: "font-weight: bold;" %>
+                                <% end %>
+                            <% else %>
+                                <%# Display unfollow button %>
+                                <%= form_for(current_user.active_followers.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
+                                    <%= f.submit "Unfollow", class: "btn", style: "font-weight: bold;" %>
+                                <% end %>
+                            <% end %>
+                            </center>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+

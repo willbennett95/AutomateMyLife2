@@ -1,3 +1,4 @@
+<%# Partial for the posts form using bootstrap's dynamic tabs class %>
 <div class="panel panel-default post-form-panel">
     <div class="panel-body row">
       
@@ -7,7 +8,7 @@
     <li><a data-toggle="tab" href="#post2">Intermediate Post</a></li>
     <li><a data-toggle="tab" href="#post3">Advanced Post</a></li>
   </ul>
-
+      <%# Basic post form %>
       <div class="tab-content">
         <div id="post1" class="tab-pane fade in active" style="margin-top: 21px">
           
@@ -18,7 +19,9 @@
             <%= form_for(@newPost) do |f| %>
             <center> 
               <div class="field" style="margin-left: 10px;">
+                <%# Text content %>
                 <%= f.text_field :content, autofocus: true, class: "form-control" %>
+                <%# Submit button to send post to database %>
                 <span style="float: right; margin-top: 8px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
               </div>
             </center> 
@@ -29,7 +32,7 @@
         </div>
         
         
-        
+        <%# Intermediate post form %>
         <div id="post2" class="tab-pane fade post-body" style="margin-top: 21px">
           <div class="col-sm-1">
               <div class="round-image-50"><%= image_tag(current_user.profilepic.url(:thumb)) %></div>
@@ -38,11 +41,14 @@
             <%= form_for(@newPost) do |f| %>
             <center> 
               <div class="field" style="margin-left: 10px;">
+                <%# Text content %>
                 <%= f.text_field :content, autofocus: true, class: "form-control" %>
                 <div class="form-group">
                   <h5>Add an image to validate the completion of your task</h5>
+                  <%# Image 1 %>
                   <%= f.file_field :image, class: 'form-control' %>
                 </div>
+                <%# Submit button to send post to database %>
                 <span style="float: right; margin-top: 8px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
               </div>
             </center> 
@@ -53,7 +59,7 @@
         </div>
         
         
-        
+        <%# Advanced post form %>
         <div id="post3" class="tab-pane fade post-body" style="margin-top: 21px">
           <div class="col-sm-1">
               <div class="round-image-50"><%= image_tag(current_user.profilepic.url(:thumb)) %></div>
@@ -62,15 +68,19 @@
             <%= form_for(@newPost) do |f| %>
             <center> 
               <div class="field" style="margin-left: 10px;">
+                <%# Text content %>
                 <%= f.text_field :content, autofocus: true, class: "form-control" %>
                 <div class="form-group">
                   <h5>Add an image to validate the completion of your task</h5>
+                  <%# Image 1 %>
                   <%= f.file_field :image, class: 'form-control' %>
                 </div>
                 <div class="form-group">
                   <h5>Add an image to validate the task was completed on time (e.g. a screenshot)</h5>
+                  <%# Image 2 %>
                   <%= f.file_field :image2, class: 'form-control' %>
                 </div>
+                <%# Submit button to send post to database %>
                 <span style="float: right; margin-top: 8px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
               </div>
             </center> 

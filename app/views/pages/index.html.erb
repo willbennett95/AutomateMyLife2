@@ -1,3 +1,4 @@
+<%# Landing page for new users %>
 <% if !user_signed_in? %>
     <style> 
         body {
@@ -33,7 +34,7 @@
     </div>
     
 <% else %>
-
+    <%# If a user is signed in, set home as the index page %>
     <script>
         document.location = "/home"
     </script>

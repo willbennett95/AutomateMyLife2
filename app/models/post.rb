@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
   
     cattr_accessor :current_user
 
+  # Define the attributes to be exported to CSV
   def self.to_csv
     attributes = %w{id content user_id created_at updated_at} 
     CSV.generate do |csv|

@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   
-  get 'friends/index'
 
-  get 'friends/destroy'
+  get 'followers_controller/create'
 
-  resources :friend_requests
-  resources :friendships, only: [:create, :update, :destroy]
+  get 'followers_controller/destroy'
+
+  resources :followers
 
   devise_for :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  
   # root URL
   root 'pages#index'
   
@@ -15,7 +21,7 @@ Rails.application.routes.draw do
   
   get '/user/:id' => 'pages#profile' # routes to the logged in user
   
-  get '/findfriends' => 'pages#findfriends'
+  get '/connect' => 'pages#connect'
   
   get '/mydata' => 'pages#mydata'
   get '/userdata' => 'pages#userdata'

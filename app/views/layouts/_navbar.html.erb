@@ -1,7 +1,9 @@
 <!-- navbar will differ depending on if a user is signed in or not -->
 
 <% if !user_signed_in? %>
+    <%# If a user is not signed in %>
     <%= render '/layouts/navbar_loggedout' %>
 <% else %>
+    <%# If a user is signed in %>
     <%= render '/layouts/navbar_loggedin' %>
 <% end %>

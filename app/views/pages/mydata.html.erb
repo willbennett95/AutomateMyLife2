@@ -4,6 +4,7 @@
     </div>
     
     <div class="col-xs-6">
+        <%# Description of GDPR and why a user should control their data %>
         <h3>My Data</h3><br><br>
         <p> One of the main goals of AutomateMyLife is to put a strong emphasis on the ownership of personal data.
         With the introduction of the May 2018 GDPR law, it is important that we not only comply, but promote the idea
@@ -20,10 +21,12 @@
         which can be used to provide/sell to companies of your choice, at your own descretion.</p><br>
         
         <center>
+        <%# Download post data as a PDF %>
         <div class="col-xs-3">
             <p>.pdf</p>
             <span><%= link_to "Download", post_download_pdf_path(:post_id, :format => :pdf), class: 'btn btn-primary' %></span>
         </div>
+        <%# Download post data as a CSV %>
         <div class="col-xs-3">
             <p>.csv</p>
             <span><%= link_to "Download", posts_path(format: "csv"), class: 'btn btn-primary' %></span>

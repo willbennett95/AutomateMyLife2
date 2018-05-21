@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-
+    @users = User.all
   end
 
   def home
@@ -19,21 +19,10 @@ class PagesController < ApplicationController
     end
     @posts = Post.all.where("user_id = ?", User.find_by_username(params[:id])) # only shows current user's posts on their profile
     @newPost = Post.new 
-    @incoming = FriendRequest.where(friend: current_user)
   end
   
-  
-    def export_to_xml  
-      @userposts = Post.where(:posts => { :user_id => current_user })
-        respond_to do |f|
-            f.html
-            f.xml { render :xml => @userposts}
-        end
-    end
 
-
-
-  def findfriends
+  def connect
     @posts = Post.all
     @users = User.all
     

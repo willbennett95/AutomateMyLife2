@@ -1,0 +1,17 @@
+<%# Partial for following and unfollowing users %>
+
+<%# Only show buttons if the user is not the current user %>
+<% if current_user.id != user.id %> 
+            <center>
+                <% if !current_user.following?(user) %>
+                    <%= form_for(current_user.active_followers.build) do |f| %>
+                        <div><%= hidden_field_tag :followed_id, user.id %></div>
+                        <%= f.submit "Follow", class: "btn btn-primary", style: "font-weight: bold;" %>
+                    <% end %>
+                <% else %>
+                    <%= form_for(current_user.active_followers.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
+                        <%= f.submit "Unfollow", class: "btn", style: "font-weight: bold;" %>
+                    <% end %>
+                <% end %>
+            </center>
+<% end %>

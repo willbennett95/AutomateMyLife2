@@ -16,10 +16,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password, :profilepic) }
   end
   
-  before_filter :set_current_user
 
-    def set_current_user
-      Post.current_user = current_user
-    end
   
 end

@@ -11,50 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180520030807) do
+ActiveRecord::Schema.define(version: 20180521163048) do
 
-  create_table "friend_requests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "followers", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "friend_requests", ["friend_id"], name: "index_friend_requests_on_friend_id"
-  add_index "friend_requests", ["user_id"], name: "index_friend_requests_on_user_id"
-
-  create_table "friendships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
-  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id"
-
-  create_table "intermediatePosts", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "intermediatePosts", ["user_id", "created_at"], name: "index_intermediatePosts_on_user_id_and_created_at"
-  add_index "intermediatePosts", ["user_id"], name: "index_intermediatePosts_on_user_id"
-
-  create_table "intermediate_posts", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  add_index "intermediate_posts", ["user_id"], name: "index_intermediate_posts_on_user_id"
+  add_index "followers", ["followed_id"], name: "index_followers_on_followed_id"
+  add_index "followers", ["follower_id", "followed_id"], name: "index_followers_on_follower_id_and_followed_id", unique: true
+  add_index "followers", ["follower_id"], name: "index_followers_on_follower_id"
 
   create_table "likes", force: :cascade do |t|
     t.integer  "post_id"
