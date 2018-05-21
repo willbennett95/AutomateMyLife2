@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-sm-11">
                         <h4 style= "font-weight: bold; margin-top: 12px; margin-left: 12px;"><%=user.username %> </h4>
-                        <button style="float: right; margin-top: -21px;"><%=link_to "Add Friend", friendships_path(friend_id: user), method: :post %></button>
+                        <button style="float: right; margin-top: -21px;"><%= link_to "Add Friend", friend_requests_path(friend_id: user.id), method: :post %></button>
                         </div>
                     </div>
                 </div>
