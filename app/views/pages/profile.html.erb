@@ -6,6 +6,8 @@
         <div class="col-sm-12">
             <h3 style="font-weight: bold;"><%= @username %></h3>
             <p><%= User.find_by_username(params[:id]).email %> </p>
+            <h4>Likes given: <%= User.find_by_username(params[:id]).likes.count %></h4>
+            <h4>Likes received: <%= User.find_by_username(params[:id]).posts.map { |f| f.likes.count }.sum %></h4>
         </div>
     </div> 
     
@@ -50,7 +52,7 @@
                 </div>
             <% end %>
             
-                
+             <% if user_signed_in? %>    
             <div class="col-sm-12">
                 <p class="post-upvotes">
                     <% liked = @p.likes.find { |like| like.user_id == current_user.id} %>
@@ -62,7 +64,7 @@
                 </p>
                 <p><%= @p.likes.count %> <%= (@p.likes.count) == 1 ? 'Like' : 'Likes' %></p>
             </div>
-                
+            <% end %>    
             </div>
         </div>
         <% end %>

@@ -50,7 +50,7 @@
                 <%# Displaying the post author's username and the time and date of post creation %>
                 <p class="post-title"><a href="/user/<%= User.find(@p.user_id).username %>"><span class="post-user_id"><%= User.find(@p.user_id).username %></span></a> <span class="post-time"> - <%= @p.created_at.to_formatted_s(:short) %></span></p>
                         <%# Displaying a delete button for all posts created by the current user %>
-                        <% if user_signed_in? && User.find(@p.user_id).username == current_user.username %>
+                        
                         <div class="dropdown"  style="float: right;">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></a>
@@ -58,7 +58,7 @@
                                 <li><%= link_to('Delete', destroy_post_url(@p), :method => :delete, data: {confirm: 'Are you sure?'}) %></li>
                             </ul>
                         </div>
-                        <% end %>
+                        
                 <%# Displaying the post text content %>   
                 <p class="post-body"><%= @p.content %></p>
             </div>
@@ -92,7 +92,8 @@
             <% end %>
         </div>
     </div>
-    <% end %> 
+    <% end %>
+
     
     
     <div class="panel panel-default post-panel">

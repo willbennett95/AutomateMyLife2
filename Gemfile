@@ -7,6 +7,14 @@ gem 'devise'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+group :development do
+  gem "rails-erd"
+end
+
+group :development, :test do
+    gem 'railroady'
+end
+
 # import for boostrap
 gem 'bootstrap-sass', '~> 3.3.7'
 

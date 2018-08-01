@@ -1,7 +1,7 @@
 <%# Partial for following and unfollowing users %>
 
 <%# Only show buttons if the user is not the current user %>
-<% if current_user.id != user.id %> 
+<% if user_signed_in? && current_user.id != user.id %> 
             <center>
                 <% if !current_user.following?(user) %>
                     <%= form_for(current_user.active_followers.build) do |f| %>

@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
       active_followers.create(followed_id: user.id)
     end
     
-    # unfollow a usesr
+    # unfollow a user
     def unfollow(user)
       active_followers.find_by(followed_id: user.id).destroy
     end

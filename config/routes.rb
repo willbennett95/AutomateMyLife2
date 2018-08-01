@@ -13,20 +13,20 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  
-  # root URL
-  root 'pages#index'
-  
-  get '/home' => 'pages#home'
-  
-  get '/user/:id' => 'pages#profile' # routes to the logged in user
-  
-  get '/connect' => 'pages#connect'
-  
-  get '/mydata' => 'pages#mydata'
-  get '/userdata' => 'pages#userdata'
-  get '/mydata/download_pdf'
-  
+
+    # root URL
+    root 'pages#index'
+
+    get '/home' => 'pages#home'
+    
+    get '/user/:id' => 'pages#profile' # routes to the logged in user
+    
+    get '/connect' => 'pages#connect'
+    
+    get '/mydata' => 'pages#mydata'
+    get '/userdata' => 'pages#userdata'
+    get '/mydata/download_pdf'
+
   resources :posts do
     get :download_pdf
     resources :likes
